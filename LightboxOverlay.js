@@ -30,6 +30,13 @@ const styles = StyleSheet.create({
     width: WINDOW_WIDTH,
     backgroundColor: 'transparent',
   },
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: WINDOW_WIDTH,
+    backgroundColor: 'transparent',
+  },
   closeButton: {
     fontSize: 35,
     color: 'white',
@@ -199,6 +206,7 @@ export default class LightboxOverlay extends Component {
     const {
       isOpen,
       renderHeader,
+      renderFooter,
       swipeToDismiss,
       origin,
       backgroundColor,
@@ -249,6 +257,7 @@ export default class LightboxOverlay extends Component {
         {this.getContent()}
       </Animated.View>
     );
+    const footer = (<Animated.View style={[styles.footer, lightboxOpacityStyle]}>{(renderFooter ? renderFooter() : null )}</Animated.View>);
 
     if (this.props.navigator) {
       return (
@@ -256,6 +265,7 @@ export default class LightboxOverlay extends Component {
           {background}
           {content}
           {header}
+          {footer}
         </View>
       );
     }
@@ -265,6 +275,7 @@ export default class LightboxOverlay extends Component {
         {background}
         {content}
         {header}
+        {footer}
       </Modal>
     );
   }
